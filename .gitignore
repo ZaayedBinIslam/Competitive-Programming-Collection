@@ -67,3 +67,6 @@ replay_pid*
 .vscode/
 cmake-build-debug/
 *.txt
+Contests/Phitron YCPC 2025/
+build/
+

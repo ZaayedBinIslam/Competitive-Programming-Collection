@@ -1,5 +1,5 @@
 // Created on 28-Nov-24
-//
+//  done on 21 sept,25
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -10,9 +10,9 @@ typedef vector<ll> vl;
 
 #ifndef ONLINE_JUDGE
 #define REDIRECT_IO \
-    freopen("input.txt", "r", stdin);   \
-    freopen("output.txt", "w", stdout); \
-    freopen("error.txt", "w", stderr);
+freopen("input.txt", "r", stdin);   \
+freopen("output.txt", "w", stdout); \
+freopen("error.txt", "w", stderr);
 #else
 #define REDIRECT_IO
 #endif
@@ -25,36 +25,28 @@ typedef vector<ll> vl;
 
 int main() {
     faster;
-    REDIRECT_IO;
+    // REDIRECT_IO;
     int n;
     cin >> n;
     vi v(n);
 
-    for (int i = 0; i < n; i++) {
+    for(int i = 0; i < n; i++) {
         cin >> v[i];
     }
-    sort(v.begin(), v.end(), greater());
-    vi prefixSum(n + 1);//1-indexed array/vector
+    sort(v.begin(), v.end(), greater<>());
+    vi prefixSum(n);
 
-    for (int i = 0; i < n; i++) {
-        prefixSum[i + 1] = prefixSum[i] + v[i];
+    prefixSum[0] = v[0];
+    for(int i = 1; i < n; i++) {
+        prefixSum[i] = prefixSum[i - 1] + v[i];
     }
 
     int cnt = 0;
-    int r = n - 1, l = 0;//for right side sum
-//    int r2 = n - 1, l2 = 0;
-    bool flag = false;
-
-    int coinSum = 0;
-    for (int i = 0; i < n; i++) {
-        coinSum += v[i];
-        int rightSum = prefixSum[r] - prefixSum[l];
-        if (coinSum < rightSum) {
-            cnt++;
-            l++;
-        } else
+    for(int i = 0; i < n; i++) {
+        if(prefixSum[i] > (prefixSum[n - 1] - prefixSum[i])) {
+            cnt = i+1;
             break;
-
+        }
     }
     cout << cnt << nl;
 
