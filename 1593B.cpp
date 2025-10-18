@@ -1,65 +1,51 @@
 // Created on 09-Mar-24
-//
+//done on oct18,25
 #include <bits/stdc++.h>
 
 using namespace std;
 
-typedef long long ll;
+typedef long long   ll;
 typedef vector<int> vi;
-typedef vector<ll> vl;
+typedef vector<ll>  vl;
 
 int main() {
     int t;
     cin >> t;
     while (t--) {
-        ll n;
-        cin >> n;
-        ll steps = 0;
-        while (true) {
-            if (n % 25 == 0 || log10(n) + 1 < 2) {
-                cout << steps << endl;
-                break;
+        string s;
+        cin >> s;
+        int  cnt1 = 0, cnt2 = 0;
+        bool ffound = false, zfound = false;
+
+        for (int i = s.size() - 1; i >= 0; i--) {
+
+            if (ffound) {
+                if (((s[i] == '2') || (s[i] == '7'))) {
+                    break;
+                }
             }
-
-            if (n % 10 != 0 && n % 10 != 5) {
-                n = n / 10;
-                steps++;
+            if (s[i] == '5' && !ffound) {
+                ffound = true;
                 continue;
-            } else if (n % 10 != 5) {
-                n = n / 10;
-                steps++;
-                continue;
-            } else if (n % 10 == 0) {
-                if (n % 100 != 0) {
-                    string s = to_string(n);
-                    s.erase(s.end() - 2, s.end() - 1);
-                    n = stoi(s);
-                    steps++;
-                }
-                continue;
-            } else if (n % 10 == 5) {
-
-                if (n % 100 != 25 && n % 100 != 5) {
-                    string s = to_string(n);
-                    s.erase(s.end() - 2, s.end() - 1);
-                    n = stoi(s);
-                    steps++;
-                    continue;
-                }
-                else if (n % 100 != 75 && n % 100 != 5) {
-                    string s = to_string(n);
-                    s.erase(s.end() - 2, s.end() - 1);
-                    n = stoi(s);
-                    steps++;
-                    continue;
-                } else if (n % 100 == 5) {
-                    n = n / 10;
-                    steps++;
-                    continue;
-                }
-
             }
+            cnt1++;
         }
+
+        for (int i = s.size() - 1; i >= 0; i--) {
+            if (zfound) {
+                if (((s[i] == '0') || (s[i] == '5'))) {
+                    break;
+                }
+            }
+            if (s[i] == '0' && !zfound) {
+                zfound = true;
+                continue;
+            }
+            cnt2++;
+        }
+
+        cout << (cnt1 < cnt2 ? cnt1 : cnt2) << endl;
     }
+
     return 0;
 }
