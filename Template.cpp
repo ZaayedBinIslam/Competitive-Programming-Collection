@@ -2,9 +2,11 @@
 
 using namespace std;
 
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<ll> vl;
+typedef long long      ll;
+typedef vector<int>    vi;
+typedef vector<ll>     vl;
+typedef pair<int, int> pii;
+typedef pair<ll, ll>   pll;
 
 #define faster ios_base::sync_with_stdio(false);cin.tie(NULL)
 #define getUnique(v) {sort(v.begin(), v.end()); v.erase(unique(v.begin(), v.end()), v.end());}
@@ -30,12 +32,22 @@ void sieve(ll n) {
     }
 }
 
+
 int main() {
     faster;
+
     int t;
     cin >> t;
-    while (t--) {
 
+    while (t--) {
+        int n;
+        cin >> n;
+        vi v(n);
+        for (int i = 0; i < n; i++) {
+            cin >> v[i];
+        }
+        // Your code here
     }
+
     return 0;
 }
